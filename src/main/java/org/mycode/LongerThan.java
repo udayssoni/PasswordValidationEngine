@@ -8,9 +8,17 @@ public class LongerThan implements Rule {
     }
 
     @Override
-    public boolean IsMatched(String string) {
+    public ResponseObject isMatched(String string) {
 
-        return string.length() >= size;
+        ResponseObject responseObject = new ResponseObject();
+        if(string.length() >= size){
+            responseObject.setValidationStatus(Boolean.TRUE);
+            return responseObject ;
+        }
+        responseObject.setValidationStatus(Boolean.FALSE);
+        responseObject.setErrorMessage("Password length should be more than 8 characters");
+        return responseObject;
+
     }
 
 }

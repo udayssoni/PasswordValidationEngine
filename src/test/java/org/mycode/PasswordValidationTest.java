@@ -1,37 +1,27 @@
 package org.mycode;
 
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class PasswordValidationTest {
 
-
-    private PasswordValidator checker = PasswordValidator.build();
+    private PasswordValidator checker = PasswordValidator.build() ;
 
     @Test
-    public void longer_than_8_characters() {
-        Assertions.assertTrue(checker.isValid("1234567A"));
-        Assertions.assertFalse(checker.isValid("1234567"));
-    }
- //   @Test
-    public void validation_password_having_one_uppercase_char ()  throws InvalidPasswordException
-    {
-        Assertions.assertTrue(checker.isValid("1234567A"));;
-        Assertions.assertFalse(checker.isValid("1234567a"));;
+    public void test3Condition(){
+
+       Assertions.assertTrue(checker .isValid("ABCDabcd"));
+       Assertions.assertTrue(checker .isValid("abcdabcdA"));
+       Assertions.assertTrue(checker .isValid("abcdabcd1"));
+
+       //3.	Add feature: password is never OK if item 1.d is not true.
+        Assertions.assertFalse(checker .isValid("ABCD1ABCD"));
+        Assertions.assertFalse(checker .isValid("121"));
+
+
 
     }
-  //  @Test
-    public void validation_password_having_one_lowercase_char() throws InvalidPasswordException {
-        Assertions.assertTrue(checker.isValid("1234567a"));;
-        Assertions.assertFalse(checker.isValid("1234567A"));;
-    }
 
-   // @Test
-    public void validation_password_having_one_number()  throws InvalidPasswordException
-    {
-        Assertions.assertTrue(checker.isValid("1234567A"));;
-        Assertions.assertFalse(checker.isValid("ANCBDGF"));;
-    }
 
 }

@@ -7,7 +7,12 @@ public class LongerThanTest {
 
     @Test
     public void test() {
-        Assertions.assertTrue(new LongerThan(8).IsMatched("1234567890"));
-        Assertions.assertFalse(new LongerThan(8).IsMatched("1"));
+        ResponseObject responseObject = new LongerThan(8).isMatched("1234567890");
+        Assertions.assertTrue(responseObject.isValidationStatus());
+
+        ResponseObject responseObject1 = new LongerThan(8).isMatched("1");
+        Assertions.assertFalse(responseObject1.isValidationStatus());
+
+
     }
 }
