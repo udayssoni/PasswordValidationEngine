@@ -1,54 +1,33 @@
 package org.mycode;
 
-import java.util.function.IntPredicate;
+import java.util.ArrayList;
+import java.util.List;
+import static java.util.Arrays.asList;
+
 
 public class PasswordValidator {
 
-    public static void isPasswordNull(String password) throws InvalidPasswordException
-    {
-        if(password == null){
-            throw new InvalidPasswordException(2);
-        }
-    }
+    private List<Rule> rules;
 
-    public static void isPasswordLengthValid(String password) throws InvalidPasswordException
-    {
-        if(password.length() < 8){
-            throw new InvalidPasswordException(1);
-        }
-    }
+    private static List<Rule> BASIC_RULES = asList(
+            new LongerThan(8)//,
+            /*new ContainsUpperCaseChars(),
+            new ContainsLowerCaseChars(),
+            new ContainsNumeric()*/);
 
-    public static void IsLowerCase(String value) throws InvalidPasswordException {
-        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
-            throw new InvalidPasswordException(4);
-        }
-    }
-
-    public static void IsUpperCase(String value)throws InvalidPasswordException{
-        if(!contains(value, i -> Character.isLetter(i) && Character.isUpperCase(i))){
-            throw new InvalidPasswordException(3);
-        }
-    }
-
-    public static void IsNumber(String value) throws InvalidPasswordException{
-        if(!contains(value, i ->  Character.isDigit(i))){
-            throw new InvalidPasswordException(5);
-        }
-    }
-
-    private static boolean contains(String value, IntPredicate predicate) throws InvalidPasswordException{
-        return value.chars().anyMatch(predicate);
+    public boolean isValid(String password) {
+        return rules.stream().allMatch(rule -> rule.IsMatched(password));
     }
 
 
-    public static void main (String args[]){
-
-        String password = "uday";
-        try {
-            PasswordValidator.IsNumber(password);
-        } catch (InvalidPasswordException e) {
-            throw new RuntimeException(e);
-        }
-
+    public PasswordValidator(List<Rule> rules) {
+        this.rules = new ArrayList<>(rules);
     }
+
+
+    public static PasswordValidator build() {
+        List<Rule> rules = new ArrayList<Rule>(BASIC_RULES);
+        return new PasswordValidator(rules);
+    }
+
 }
