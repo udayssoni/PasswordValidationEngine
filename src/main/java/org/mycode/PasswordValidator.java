@@ -4,30 +4,39 @@ import java.util.function.IntPredicate;
 
 public class PasswordValidator {
 
-    public static boolean isValid(String password) {
-        if (password.isBlank()) {
-            return true;
+    public static void isPasswordNull(String password) throws InvalidPasswordException
+    {
+        if(password.equals(null)){
+            throw new InvalidPasswordException(2);
         }
-        if(password.length() >= 8 ){
-            return true ;
+    }
+
+    public static void isPasswordLengthValid(String password) throws InvalidPasswordException
+    {
+        if(password.length() < 8){
+            throw new InvalidPasswordException(1);
         }
-
-       return false;
     }
 
-    public static boolean IsLowerCase(String value) {
-        return contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i));
+    public static void IsLowerCase(String value) throws InvalidPasswordException {
+        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
+            throw new InvalidPasswordException(4);
+        }
     }
 
-    public static boolean IsUpperCase(String value) {
-        return contains(value, i -> Character.isLetter(i) && Character.isUpperCase(i));
+    public static void IsUpperCase(String value)throws InvalidPasswordException{
+        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
+            throw new InvalidPasswordException(3);
+        }
     }
 
-    public static boolean IsNumber(String value) {
-        return contains(value, Character::isDigit);
+    public static void IsNumber(String value) throws InvalidPasswordException{
+        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
+            throw new InvalidPasswordException(5);
+        }
     }
 
-    private static boolean contains(String value, IntPredicate predicate) {
+    private static boolean contains(String value, IntPredicate predicate) throws InvalidPasswordException{
         return value.chars().anyMatch(predicate);
     }
 
