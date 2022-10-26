@@ -1,7 +1,8 @@
 package org.mycode;
 
 public class PasswordValidator {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+    public static boolean isValid(String password) {
+     return true;
     }
 }
