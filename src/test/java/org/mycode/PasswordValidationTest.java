@@ -25,5 +25,23 @@ public class PasswordValidationTest {
         String password = "uday456";
         Assert.assertFalse(PasswordValidator.isValid(password));
     }
+    @Test
+    public void validation_password_having_one_uppercase_char()
+    {
+        String password = "UDAy456";
+        Assert.assertTrue(PasswordValidator.IsUpperCase(password));
+    }
+    @Test
+    public void validation_password_having_one_lowercase_char()
+    {
+        String password = "UDAy456";
+        Assert.assertTrue(PasswordValidator.IsLowerCase(password));
+    }
+    @Test
+    public void validation_password_having_one_number()
+    {
+        String password = "Uday6";
+        Assert.assertTrue(PasswordValidator.IsNumber(password));
+    }
 
 }
