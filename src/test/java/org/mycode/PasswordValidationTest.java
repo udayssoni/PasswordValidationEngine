@@ -29,22 +29,63 @@ public class PasswordValidationTest {
       //  Assertions.assertex(actualMessage.contains(expectedMessage));
 
     }
-   /* @Test
-    public void validation_password_having_one_uppercase_char()
+    @Test
+    public void validation_password_having_one_uppercase_char ()  throws InvalidPasswordException
     {
-        String password = "UDAy456";
-        Assert.assertTrue(PasswordValidator.IsUpperCase(password));
+        String password = "Uday123456";
+       PasswordValidator.IsUpperCase(password);
+    }
+
+    @Test
+    public void validation_password_having_one_uppercase_char_negative() {
+        String password = "uday456";
+        Exception exception = Assertions.assertThrows(InvalidPasswordException.class, () -> {
+            PasswordValidator.IsUpperCase(password);
+        });
+
     }
     @Test
     public void validation_password_having_one_lowercase_char() throws InvalidPasswordException {
         String password = "UDAy456";
-        Assert.assertTrue(PasswordValidator.IsLowerCase(password));
+        PasswordValidator.IsLowerCase(password);
     }
+
     @Test
-    public void validation_password_having_one_number()
+    public void validation_password_having_one_lowercase_char_negative() throws InvalidPasswordException {
+        String password = "123456";
+        Exception exception = Assertions.assertThrows(InvalidPasswordException.class, () -> {
+            PasswordValidator.IsLowerCase(password);
+        });
+    }
+
+    @Test
+    public void validation_password_having_one_number()  throws InvalidPasswordException
     {
         String password = "Uday6";
-        Assert.assertTrue(PasswordValidator.IsNumber(password));
-    }*/
+        PasswordValidator.IsNumber(password);
+    }
+
+    @Test
+    public void validation_password_having_one_number_negative() throws InvalidPasswordException {
+        String password = "ABC";
+        Exception exception = Assertions.assertThrows(InvalidPasswordException.class, () -> {
+            PasswordValidator.IsNumber(password);
+        });
+    }
+
+    @Test
+    public void validation_password_is_not_null()  throws InvalidPasswordException
+    {
+        String password = "Uday6";
+        PasswordValidator.isPasswordNull(password);
+    }
+
+    @Test
+    public void validation_password_is_not_null_negative() throws InvalidPasswordException {
+        String password = null ;
+        Exception exception = Assertions.assertThrows(InvalidPasswordException.class, () -> {
+            PasswordValidator.isPasswordNull(password);
+        });
+    }
 
 }

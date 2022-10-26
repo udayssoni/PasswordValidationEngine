@@ -6,7 +6,7 @@ public class PasswordValidator {
 
     public static void isPasswordNull(String password) throws InvalidPasswordException
     {
-        if(password.equals(null)){
+        if(password == null){
             throw new InvalidPasswordException(2);
         }
     }
@@ -25,13 +25,13 @@ public class PasswordValidator {
     }
 
     public static void IsUpperCase(String value)throws InvalidPasswordException{
-        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
+        if(!contains(value, i -> Character.isLetter(i) && Character.isUpperCase(i))){
             throw new InvalidPasswordException(3);
         }
     }
 
     public static void IsNumber(String value) throws InvalidPasswordException{
-        if(!contains(value, i -> Character.isLetter(i) && Character.isLowerCase(i))){
+        if(!contains(value, i ->  Character.isDigit(i))){
             throw new InvalidPasswordException(5);
         }
     }
@@ -40,4 +40,15 @@ public class PasswordValidator {
         return value.chars().anyMatch(predicate);
     }
 
+
+    public static void main (String args[]){
+
+        String password = "uday";
+        try {
+            PasswordValidator.IsNumber(password);
+        } catch (InvalidPasswordException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
