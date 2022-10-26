@@ -1,6 +1,6 @@
 package org.mycode;
 
-public class ResponseObject {
+public class ValidationResponse {
 
     private boolean validationStatus ;
 

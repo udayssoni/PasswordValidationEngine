@@ -3,16 +3,17 @@ package org.mycode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LongerThanTest {
+public class ContainsNumericTest {
 
     @Test
     public void test() {
-        ValidationResponse validationResponse = new LongerThan(8).isMatched("1234567890");
+
+        ValidationResponse validationResponse = new ContainsNumeric().isMatched("1");
         Assertions.assertTrue(validationResponse.isValidationStatus());
 
-        ValidationResponse validationResponse1 = new LongerThan(8).isMatched("1");
+        ValidationResponse validationResponse1 = new ContainsNumeric().isMatched("a");
         Assertions.assertFalse(validationResponse1.isValidationStatus());
 
-
     }
+
 }
